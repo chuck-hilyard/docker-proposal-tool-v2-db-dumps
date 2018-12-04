@@ -82,6 +82,7 @@ RUN set -x \
     python3 \
     python3-pip \ 
     python3-boto3 \
+    awscli \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/lib/mongodb \
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
