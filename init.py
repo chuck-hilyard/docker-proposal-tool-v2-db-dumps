@@ -1,12 +1,7 @@
 
-#import http.client
 import os
-#import requests
 import subprocess
 import time
-#import consul_kv
-#import pwd, grp
-#import re
 import datetime
 
 
