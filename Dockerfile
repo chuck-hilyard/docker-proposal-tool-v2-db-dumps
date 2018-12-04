@@ -82,8 +82,6 @@ RUN set -x \
     python3 \
     python3-pip \ 
     python3-boto3 \
-    supervisor \
-    cron \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/lib/mongodb \
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
@@ -93,11 +91,11 @@ RUN mkdir -p /data/db /data/configdb \
 VOLUME /data/db /data/configdb
 
 # RL specific stuff
-RUN pip3 install consul_kv
-ADD crontab /var/spool/cron/crontabs/root
-RUN chmod 0600 /var/spool/cron/crontabs/root
+#RUN pip3 install consul_kv
+#ADD crontab /var/spool/cron/crontabs/root
+#RUN chmod 0600 /var/spool/cron/crontabs/root
 COPY init.py /tmp/init.py
-COPY supervisor-cron.conf /etc/supervisor/conf.d/supervisor-cron.conf
-#RUN echo "*/2 * * * * mongodump -u admin -p admin -h proposal-tool-v2-db.media.dev.usa.reachlocalservices.com -o /tmp/$(date '+%Y-%m-%d-%H%M')" | crontab -
+#COPY mongodump.sh /tmp/mongodump.sh
+#COPY supervisor-cron.conf /etc/supervisor/conf.d/supervisor-cron.conf
 
 CMD [ "python3", "-u", "/tmp/init.py" ]

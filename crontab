@@ -1,2 +1,0 @@
-# environment variables set in terraform
-*/4 * * * * mongodump -u $(echo $MONGO_INITDB_ROOT_USERNAME) -p $(echo $MONGO_INITDB_ROOT_PASSWORD) -h proposal-tool-v2-db.media.$(echo $environment).$(echo $platform).reachlocalservices.com -o /tmp/$(date '+\%Y-\%m-\%d-\%H\%M')
