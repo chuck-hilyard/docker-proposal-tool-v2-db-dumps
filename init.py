@@ -11,6 +11,7 @@ import datetime
 
 
 def take_dump():
+  # these environment variables are set via terraform
   MONGO_INITDB_ROOT_USERNAME = os.environ['MONGO_INITDB_ROOT_USERNAME']
   MONGO_INITDB_ROOT_PASSWORD = os.environ['MONGO_INITDB_ROOT_PASSWORD']
   datestring = datetime.datetime.today().strftime('%Y-%m-%d-%H%M')

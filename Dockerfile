@@ -70,7 +70,7 @@ ENV MONGO_VERSION 4.0.4
 
 RUN echo "deb http://$MONGO_REPO/apt/ubuntu xenial/${MONGO_PACKAGE%-unstable}/$MONGO_MAJOR multiverse" | tee "/etc/apt/sources.list.d/${MONGO_PACKAGE%-unstable}.list"
 
-# RL specific stuff mixed in
+# RL specific stuff mixed in (python3 install)
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
@@ -91,11 +91,6 @@ RUN mkdir -p /data/db /data/configdb \
 VOLUME /data/db /data/configdb
 
 # RL specific stuff
-#RUN pip3 install consul_kv
-#ADD crontab /var/spool/cron/crontabs/root
-#RUN chmod 0600 /var/spool/cron/crontabs/root
 COPY init.py /tmp/init.py
-#COPY mongodump.sh /tmp/mongodump.sh
-#COPY supervisor-cron.conf /etc/supervisor/conf.d/supervisor-cron.conf
 
 CMD [ "python3", "-u", "/tmp/init.py" ]
