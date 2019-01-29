@@ -37,8 +37,9 @@ def main():
     take_dump()
     time.sleep(2)
     sync_dumps_to_s3()
-    print("sleeping for 2 hours")
-    time.sleep(3600)
+    print("****** uncomment ***** sleeping for 2 hours")
+    #time.sleep(3600)
+    time.sleep(15)
 
 if __name__ == '__main__':
   main()
