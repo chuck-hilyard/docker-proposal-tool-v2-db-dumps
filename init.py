@@ -24,7 +24,10 @@ def sync_dumps_to_s3():
 
 def cleanup_local_dumps():
   print("removing old dumps")
-  folders = os.listdir(path='/data/backups')
+  try:
+    folders = os.listdir(path='/data/backups')
+  except FileNotFoundError as e:
+    print("exception {}".format(e))
   print("FOLDERS: ", folders)
 
 def main():
