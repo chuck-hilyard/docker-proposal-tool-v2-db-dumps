@@ -22,6 +22,11 @@ def sync_dumps_to_s3():
   target_bucket = "s3://proposal-tool-v2-db-{}-{}/backups".format(os.environ['environment'], os.environ['platform'])
   subprocess.run(["aws", "s3", "sync", "/data/backups", target_bucket])
 
+def cleanup_local_dumps():
+  print("removing old dumps")
+  folders = os.listdir(path='/data/backups')
+  print("FOLDERS: ", folders)
+
 def main():
   while True:
     print("main loop")
