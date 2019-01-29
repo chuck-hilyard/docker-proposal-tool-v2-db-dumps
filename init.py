@@ -26,9 +26,9 @@ def cleanup_local_dumps():
   print("removing old dumps")
   try:
     folders = os.listdir(path='/data/backups')
+    print("FOLDERS:",  folders)
   except FileNotFoundError as e:
     print("exception {}".format(e))
-  print("FOLDERS: ", folders)
 
 def main():
   while True:
