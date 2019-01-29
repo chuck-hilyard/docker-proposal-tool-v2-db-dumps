@@ -1,6 +1,7 @@
 # environment variables are set via terraform
 
 import os
+import shutil
 import subprocess
 import time
 import datetime
@@ -23,12 +24,16 @@ def sync_dumps_to_s3():
   subprocess.run(["aws", "s3", "sync", "/data/backups", target_bucket])
 
 def cleanup_local_dumps():
-  print("removing old dumps")
   try:
     folders = os.listdir(path='/data/backups')
-    print("FOLDERS:",  folders)
   except FileNotFoundError as e:
     print("exception {}".format(e))
+    return
+  sorted_folders = sorted(folders)
+  if len(sorted_folders) > 20:
+    target_folder = "/data/backups/{}".format(sorted_folders[0])
+    print("removing {}".format(target_folder))
+    shutil.rmtree(target_folder)
 
 def main():
   while True:
@@ -37,9 +42,8 @@ def main():
     take_dump()
     time.sleep(2)
     sync_dumps_to_s3()
-    print("****** uncomment ***** sleeping for 2 hours")
-    #time.sleep(3600)
-    time.sleep(120)
+    print("sleeping for 4 hours")
+    time.sleep(7200)
 
 if __name__ == '__main__':
   main()
