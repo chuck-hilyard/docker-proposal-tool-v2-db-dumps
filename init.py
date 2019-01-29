@@ -30,6 +30,7 @@ def cleanup_local_dumps():
 def main():
   while True:
     print("main loop")
+    cleanup_local_dumps()
     take_dump()
     time.sleep(2)
     sync_dumps_to_s3()
