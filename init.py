@@ -30,7 +30,7 @@ def cleanup_local_dumps():
     print("exception {}".format(e))
     return
   sorted_folders = sorted(folders)
-  if len(sorted_folders) > 20:
+  if len(sorted_folders) > 5:
     target_folder = "/data/backups/{}".format(sorted_folders[0])
     print("removing {}".format(target_folder))
     shutil.rmtree(target_folder)
